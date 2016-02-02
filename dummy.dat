@@ -3,7 +3,7 @@
 
 (run){
   # number of events:
-  EVENTS = 100000
+  EVENTS = 10000
   
   # Event output file:
   EVENT_OUTPUT = HepMC_GenEvent[OUTFILE]

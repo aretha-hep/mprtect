@@ -1,0 +1,8 @@
+sudo: required
+language: python
+services:
+  - docker
+before_install:
+  - docker build -t lukasheinrich/mprtect .
+script:
+  - docker-compose up
