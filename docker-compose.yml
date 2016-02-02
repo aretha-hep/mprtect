@@ -1,0 +1,34 @@
+elasticsearch:
+  container_name: luke_es
+  image: elasticsearch
+  ports:
+    - "9300:9300"
+    - "9200:9200"
+
+kibana:
+  container_name: luke_kibana
+  image: kibana
+  ports:
+    - "80:5601"
+  links:
+    - elasticsearch
+
+event_collector:
+  container_name: luke_collector
+  image: lukasheinrich/mprtect
+  ports:
+    - "3141:3141"
+  command: mprtect_collector luke_es
+  links:
+    - elasticsearch
+
+event_server:
+  container_name: luke_eventserver
+  image: lukasheinrich/mprtect
+  command: mprtect_sherpa out.fifo luke_collector
+  links:
+    - event_collector
+    
+#mprtect_collector luke_es
+#mprtect_sherpa out.fifo luke_collector
+# mprtect_sherpa out.fifo luke_collector

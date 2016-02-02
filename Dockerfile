@@ -36,6 +36,7 @@ ENV PYTHONPATH /code/hepmcanalysis_src/build/lib.linux-x86_64-2.7/hepmcanalysis/
 
 
 RUN apt-get update && apt-get install --yes nano
+RUN echo "what"
 
 ADD mprtect mprtect
 WORKDIR mprtect

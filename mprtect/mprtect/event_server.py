@@ -8,14 +8,15 @@ import os
 import time
 import math
 import uuid
+import socket
 
 @click.command()
 @click.argument('hepmcfile')
-@click.argument('collectorip')
-def eventserver(hepmcfile,collectorip):
+@click.argument('collectordns')
+def eventserver(hepmcfile,collectordns):
     context = zmq.Context()
     push_socket = context.socket(zmq.PUSH)
-    push_socket.connect("tcp://{}:3141".format(collectorip))
+    push_socket.connect("tcp://{}:3141".format(socket.gethostbyname_ex(collectordns)[-1][0]))
 
     proxy = ifstream_proxy(str(os.path.abspath(hepmcfile)))
     g = hepmc.IO_GenEvent(proxy.stream())
@@ -28,7 +29,7 @@ def eventserver(hepmcfile,collectorip):
                 'px':x.momentum().px(),
                 'py':x.momentum().py(),
                 'pz':x.momentum().pz(),
-                'pT':math.sqrt(x.momentum().px()**2 + x.momentum().px()**2 + x.momentum().pz()**2)
+                'pT':math.sqrt(x.momentum().px()**2 + x.momentum().py()**2)
             }]
         hepmc_json_event = {
             'id': str(uuid.uuid1()),
