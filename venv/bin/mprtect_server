@@ -1,0 +1,9 @@
+#!/Users/lukas/Code/mprtect/venv/bin/python
+# EASY-INSTALL-ENTRY-SCRIPT: 'Lukas-Heinrich==0.0.1','console_scripts','mprtect_server'
+__requires__ = 'Lukas-Heinrich==0.0.1'
+import sys
+from pkg_resources import load_entry_point
+
+sys.exit(
+   load_entry_point('Lukas-Heinrich==0.0.1', 'console_scripts', 'mprtect_server')()
+)

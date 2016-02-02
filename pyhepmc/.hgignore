@@ -1,0 +1,5 @@
+hepmcwrap.*
+.*\.pyc
+dist
+build
+MANIFEST

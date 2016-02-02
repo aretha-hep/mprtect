@@ -1,0 +1,50 @@
+2013-05-01  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Version 0.5.0
+
+	* Converting build system to just use distutils: there's no real
+	need for the autotools wrapper anymore.
+
+2013-03-02  Andy Buckley  <andy.buckley@cern.ch>
+
+	* Removing ParticleDataTable, etc. so that compilation will still
+	work with HepMC >= 2.06
+
+2009-04-07  Andy Buckley  <andy@insectnation.org>
+
+	* Adding $(DESTDIR) prefix to call to Python module "setup.py
+	install"
+
+2009-03-04  Andy Buckley  <andy@insectnation.org>
+
+	* Adding SWIG type table name.
+
+2009-01-07  Andy Buckley  <andy@insectnation.org>
+
+	* Changed build system *again*, since SWIG on SL cannot handle
+	elements of the HepMC C++ headers (even after hacking to make
+	Python 2.3 distutils support SWIG properly). The build now assumes
+	that tarballs are being made on a machine with a good version of
+	SWIG, and requires no SWIG to be installed on the target system.
+
+2009-01-05  Andy Buckley  <andy@insectnation.org>
+
+	* Changed build system to use newer Python support m4 macros from
+	cryp.to archive.
+
+2008-12-18  Andy Buckley  <andy@insectnation.org>
+
+	* Changed build system to use distutils/setuptools rather than m4
+	macros for most things. There is a problem in the distutils SWIG
+	support that currently breaks the distcheck target.
+
+2008-10-27  Andy Buckley  <andy@insectnation.org>
+
+	* Mapping pair<GenParticle*,GenParticle*>
+
+	* Added GenEvent.summary() method in Python.
+
+2008-10-14  Andy Buckley  <andy@insectnation.org>
+
+	* Added stdin/stdout reading and writing of HepMC data to the SWIG
+	remapping of the IO_GenEvent constructor.
