@@ -1,14 +1,14 @@
 FROM lukasheinrich/python27sherpa220rivet230
 
-# RUN mkdir /code
-#
-# COPY HepMC-2.06.09 /code/HepMC-2.06.09
-#
-#
-# WORKDIR /code/HepMC-2.06.09
-# RUN ./configure --with-momentum=GEV --with-length=MM
-# RUN make -j2
-# RUN make -j2 install
+RUN mkdir /code
+
+COPY HepMC-2.06.09 /code/HepMC-2.06.09
+
+
+WORKDIR /code/HepMC-2.06.09
+RUN ./configure --with-momentum=GEV --with-length=MM
+RUN make -j2
+RUN make -j2 install
 
 COPY swig-3.0.8.tar.gz /code
 WORKDIR /code
@@ -36,7 +36,6 @@ ENV PYTHONPATH /code/hepmcanalysis_src/build/lib.linux-x86_64-2.7/hepmcanalysis/
 
 
 RUN apt-get update && apt-get install --yes nano
-RUN echo "what"
 
 ADD mprtect mprtect
 WORKDIR mprtect
