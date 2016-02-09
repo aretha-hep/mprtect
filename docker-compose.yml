@@ -23,9 +23,9 @@ event_collector:
     - elasticsearch
 
 event_server:
-  container_name: luke_eventserver
+  # container_name: luke_eventserver
   image: lukasheinrich/mprtect
-  command: mprtect_sherpa out.fifo luke_collector
+  command: mprtect_sherpa https://zenodo.org/record/45800/files/aretha-example-configuration-v0.0.2.zip out.fifo luke_collector
   links:
     - event_collector
     

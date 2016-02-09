@@ -6,7 +6,9 @@ setup(
     install_requires = [
         'Flask',
         'click',
-        'zmq'
+        'zmq',
+        'pyyaml',
+        'requests'
     ],
   entry_points = {
       'console_scripts': [

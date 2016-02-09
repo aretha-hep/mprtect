@@ -3,7 +3,7 @@ import click
 import hepmcanalysis
 import hepmc
 from hepmcanalysis.streamproxy import ifstream_proxy
-from hepmcanalysis.events import events
+from hepmcanalysis.events import events, dumps
 import os
 import time
 import math
@@ -21,8 +21,6 @@ def eventserver(hepmcfile,collectordns):
     proxy = ifstream_proxy(str(os.path.abspath(hepmcfile)))
     g = hepmc.IO_GenEvent(proxy.stream())
     for i,e in enumerate(events(g)):
-
-
         particles_json = []
         for x in e.particles():
             particles_json += [{
@@ -32,7 +30,8 @@ def eventserver(hepmcfile,collectordns):
                 'pT':math.sqrt(x.momentum().px()**2 + x.momentum().py()**2)
             }]
         hepmc_json_event = {
-            'id': str(uuid.uuid1()),
+            'id': str(uuid.uuid4()),
+            'hepmcstring':dumps([e]),
             'nparticles':len(e.particles()),
             'particles': particles_json
         }

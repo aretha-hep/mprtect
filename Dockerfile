@@ -1,10 +1,5 @@
 FROM lukasheinrich/python27sherpa220rivet230
-
-RUN mkdir /code
-
 COPY HepMC-2.06.09 /code/HepMC-2.06.09
-
-
 WORKDIR /code/HepMC-2.06.09
 RUN ./configure --with-momentum=GEV --with-length=MM
 RUN make -j2
@@ -32,17 +27,12 @@ RUN python setup.py build_ext
 RUN python setup.py install
 WORKDIR /code
 
-ENV PYTHONPATH /code/hepmcanalysis_src/build/lib.linux-x86_64-2.7/hepmcanalysis/hepmcanalysis:
-
-
 RUN apt-get update && apt-get install --yes nano
 
+RUN echo 'rebuild'
 ADD mprtect mprtect
 WORKDIR mprtect
 RUN pip install -e .
 WORKDIR /code
 RUN pip install elasticsearch
-
-ADD input.hepmc input.hepmc
-ADD test.py test.py
-ADD dummy.dat dummy.dat
+ADD input.hepmc test.hepmc
