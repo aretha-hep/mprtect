@@ -36,7 +36,6 @@ def eventserver(hepmcfile,collectordns):
             'particles': particles_json
         }
 
-
         push_socket.send_json({'event':hepmc_json_event})
         time.sleep(0.001)
 
